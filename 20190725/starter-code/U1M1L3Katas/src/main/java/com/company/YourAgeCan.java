@@ -1,5 +1,5 @@
 package com.company;
-import java.util.Scanner;
+import java.util.Scanner; // enable I/O
 public class YourAgeCan {
 
     public static void main(String[] args) {
@@ -7,10 +7,10 @@ public class YourAgeCan {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Enter your age");
-        int age = in.nextInt();
+        int age = in.nextInt(); // initialize input to integer
 
 
-        if (age >= 18) {
+        if (age >= 18) { // putting all the condition in if to print all that apply except for >100
             System.out.println("Your can Vote");
 
             if (age >= 21) {

@@ -1,15 +1,15 @@
 package com.company;
-import java.util.Scanner;
+import java.util.Scanner; // enable I/O
 
 public class IsJavaKeyword {
 
     public static void main(String[] args) {
 
-        Scanner in=new Scanner(System.in);
+        Scanner in=new Scanner(System.in); //input from user
         System.out.println("Enter a word");
-        String str=in.nextLine();
+        String str=in.nextLine(); // putting the input in str
 
-        if
+        if // took all keyword from oracle site and check with .equals & with logical OR operator
         (str.equals("abstract")||str.equals("assert")||str.equals("boolean")||str.equals("break")||str.equals("byte")||str.equals("case")
                 ||str.equals("catch")||str.equals("char")||str.equals("class")||str.equals("const")||str.equals("continue")||str.equals("default")
                 ||str.equals("do")||str.equals("double")
