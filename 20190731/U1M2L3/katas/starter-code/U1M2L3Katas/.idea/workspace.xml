@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f640aa92-d47c-4616-9d94-65345cceb71e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../../../../02-unit/01-module-12-factor-cloud-native/02-lesson-configuration-server/activities/random-quote-service-project.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../02-unit/01-module-12-factor-cloud-native/02-lesson-configuration-server/activities/random-quote-service-project.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../solutions/U1M2L3Katas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../solutions/U1M2L3Katas/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../solutions/U1M2L3Katas/src/main/java/com/company/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../solutions/U1M2L3Katas/src/main/java/com/company/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../solutions/U1M2L3Katas/src/test/java/com/company/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../solutions/U1M2L3Katas/src/test/java/com/company/AppTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/company/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/company/AppTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../simple-calculator/solutions/Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../simple-calculator/solutions/Calculator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../simple-calculator/solutions/Calculator/src/test/java/com/company/CalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../simple-calculator/solutions/Calculator/src/test/java/com/company/CalculatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../../../02-unit/01-module-12-factor-cloud-native/02-lesson-configuration-server/activities/random-quote-service-project.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../02-unit/01-module-12-factor-cloud-native/02-lesson-configuration-server/activities/random-quote-service-project.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +27,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="C:" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -43,7 +43,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559581013495" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
