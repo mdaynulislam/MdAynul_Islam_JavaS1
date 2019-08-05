@@ -39,7 +39,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CheatProtection_Nim">
+  <component name="RunManager" selected="Application.BabyNim">
     <configuration name="BabyNim" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.company.BabyNim" />
       <module name="U1M2L8PBD" />
@@ -94,10 +94,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BabyNim" />
+        <item itemvalue="Application.Nim" />
         <item itemvalue="Application.CheatProtection_Nim" />
         <item itemvalue="Application.CheatProtection2" />
-        <item itemvalue="Application.Nim" />
-        <item itemvalue="Application.BabyNim" />
       </list>
     </recent_temporary>
   </component>

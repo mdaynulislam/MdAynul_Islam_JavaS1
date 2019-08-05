@@ -56,9 +56,11 @@ public class Nim {
                 C=C-num;
         }
 
-        while(A<=0 || B<=0 || C<=0){// it will keep prompting for number 3 pile become less than equal 0
+        System.out.println("The pile is A:" +A+"\t "+"\tB:"+B+ "\t C:"+C);
 
-            System.out.println("The pile is A:" +A+"\t"+"\tB:"+B+ "\t C:"+C);
+        while(A!=0 || B!=0 || C!=0){// it will keep prompting for number 3 pile become less than equal 0
+
+            //System.out.println("The pile is A:" +A+"\t"+"\tB:"+B+ "\t C:"+C);
 
             //PLAYER 1 PORTION!!!!!!!!!!
             //PLAYER 1 PORTION!!!!!!!!!!
@@ -88,6 +90,7 @@ public class Nim {
 
                 //PLAYER 2 PORTION********
                 //PLAYER 2 PORTION********
+            //System.out.println("The pile is A:" +A+"\t "+"\tB:"+B+ "\t C:"+C);
 
                 System.out.println(pl2+", Choose a pile "); //prompting player 2 for pile
                 a=sc.nextLine(); // pile string input
@@ -105,12 +108,13 @@ public class Nim {
                     C=C-num;
                 }
 
+            System.out.println("The pile is A:" +A+"\t"+"\tB:"+B+ "\t C:"+C);
+
             if ((A<=0) &&(B<=0) && (C<=0)) {
                 System.out.println("The pile is A:" + A + "\t"+"\tB:" + B + "\t C:" + C);
                 System.out.println(pl1 + " ,There is no counter left. So you WIN!!!!");
                 break;
             }
-
         }
     }
 }
