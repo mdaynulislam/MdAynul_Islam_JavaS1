@@ -6,7 +6,7 @@ import java.util.List;
 public class Inventory {
 
 
-   private List<Car> cars;
+   private List<Car> cars = new ArrayList<Car>();
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
@@ -51,17 +51,15 @@ public class Inventory {
         return carsThatMatch;
     }
 
-
     public void deleteCar(int id){
-
-        cars.remove(id);
-
+       this.cars.remove(id);
     }
 
     public void addCar(Car car){
-
-        cars.add(car);
+        if (car != null) {
+            this.cars.add(car);
+        } else {
+            System.out.println("buggy");
+        }
     }
-
-
 }
