@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: Magic 8 Ball
+  description:
+    A service that display an answer to the question.
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8080'
+    description: Local magic server
+paths:
+  /magic:
+    post:
+      summary: Deliver an answer randomly
+      #requestBody for the question in json format
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Answer'
+      responses:
+        '200':
+          description: A definition object
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Answer'
+                  #the response will come as a json file
+                  #schemas is Answer according to the model class and that class properties
+components:
+  schemas:
+    Answer:
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+
+            
+        
