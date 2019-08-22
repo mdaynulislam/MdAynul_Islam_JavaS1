@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: Quote, Word and Magic 8 Ball
+  description:
+    A service that display a diffrent quote, different definition and different response.
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8080'
+    description: Local quote server
+paths:
+  /quote:
+    get:
+      summary: Deliver a quote randomly
+      #requestBody is not required
+      responses:
+        '200':
+          description: A quote object
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Quote'
+                  #the response will come as a json file
+    #Quote schemas is according to the class/model Quote which has 2 properties
+
+  /word:
+    get:
+      summary: Deliver a word and the definition randomly
+      #requestBody is not required
+      responses:
+        '200':
+          description: A Definition object
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Definition'
+                  #the response will come as a json file
+         #schemas Definition is according to the model with its properties
+  /magic:
+    post:
+      summary: Deliver an answer randomly
+      #requestBody for the question in json format
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Answer'
+      responses:
+        '200':
+          description: An Answer object
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Answer'
+                  #the response will come as a json file
+                  #schemas is Answer according to the model class and that class properties
+components:
+  schemas:
+    Quote:
+      properties:
+        Author:
+          type: string
+        quotes:
+          type: string
+    Definition:
+      properties:
+        word:
+          type: string
+        definition:
+          type: string
+    Answer:
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+      required: 
+        - question
+ 
