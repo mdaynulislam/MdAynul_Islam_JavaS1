@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="546a8cb1-ebfb-4aba-8982-7bdf4e50bb20" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="MdAynulIslamU1M5Summative" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Pu4kSwNpXNCAISAPwCRBm8bAwc" />
+  <component name="PropertiesComponent">
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CLASS 27 August 27/01-lesson-service-layer/activities/in-class" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.company.MdAynulIslamU1M5Summative.dao" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Boot Camp\MdAynulIslamU1M5Summative\MdAynulIslamU1M5Summative\MdAynulIslamU1M5Summative\src\test" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.PublisherDaoTest">
+    <configuration name="MdAynulIslamU1M5SummativeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.MdAynulIslamU1M5Summative.MdAynulIslamU1M5SummativeApplication" />
+      <module name="MdAynulIslamU1M5Summative" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.MdAynulIslamU1M5Summative.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthorDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MdAynulIslamU1M5Summative" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.MdAynulIslamU1M5Summative.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company.MdAynulIslamU1M5Summative.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.company.MdAynulIslamU1M5Summative.dao.AuthorDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MdAynulIslamU1M5Summative" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.MdAynulIslamU1M5Summative.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company.MdAynulIslamU1M5Summative.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.company.MdAynulIslamU1M5Summative.dao.BookDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookDaoTest.updateBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MdAynulIslamU1M5Summative" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.MdAynulIslamU1M5Summative.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company.MdAynulIslamU1M5Summative.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.company.MdAynulIslamU1M5Summative.dao.BookDaoTest" />
+      <option name="METHOD_NAME" value="updateBook" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PublisherDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MdAynulIslamU1M5Summative" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.MdAynulIslamU1M5Summative.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company.MdAynulIslamU1M5Summative.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.company.MdAynulIslamU1M5Summative.dao.PublisherDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PublisherDaoTest" />
+        <item itemvalue="JUnit.BookDaoTest" />
+        <item itemvalue="JUnit.AuthorDaoTest" />
+        <item itemvalue="Application.MdAynulIslamU1M5SummativeApplication" />
+        <item itemvalue="JUnit.BookDaoTest.updateBook" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="546a8cb1-ebfb-4aba-8982-7bdf4e50bb20" name="Default Changelist" comment="" />
+      <created>1566710790888</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1566710790888</updated>
+    </task>
+    <servers />
+  </component>
+</project>
