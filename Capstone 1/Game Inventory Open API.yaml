@@ -37,30 +37,6 @@ paths:
                 type: "object"
                 items: 
                   $ref: '#/components/schemas/Console'
-  /console/{id}:
-    get:
-      summary: "Retrieves single console based on consoleId"
-      description: "consoleId is primary key"
-      parameters: 
-        - name: "id"
-          in: "path"
-          required: true
-          description: "consoleId to retrieve a single console" 
-          schema:
-            type: "number"
-            format: int64
-            minimum: 1
-            maximum: 11
-      responses:
-        '200':
-          description: "An object of console"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                items: 
-                  $ref: '#/components/schemas/Console'
-  /consoles:
     get:
       summary: "Retrieves list of all consoles"
       responses:
@@ -121,8 +97,32 @@ paths:
               schema:
                 type: "string"
                 items: 
+                  $ref: '#/components/schemas/Console'                
+  /console/{id}:
+    get:
+      summary: "Retrieves single console based on consoleId"
+      description: "consoleId is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "consoleId to retrieve a single console" 
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "An object of console"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
                   $ref: '#/components/schemas/Console'
-  /console/{manufacturer}:
+  
+  /console/manufacturer/{manufacturer}:
     get:
       summary: "Retrieves a list of consoles based on manufacturer"
       description: "manufacturer is an attibute of type string"
@@ -133,9 +133,6 @@ paths:
           description: "manufacturer required to retrieve a list of consoles based on manufacturer"
           schema:
             type: "string"
-            # format: int64
-            # minimum: 1
-            # maximum: 11
       responses:
         '200':
           description: "An list of consoles"
@@ -173,31 +170,7 @@ paths:
               schema:
                 type: "object"
                 items: 
-                  $ref: '#/components/schemas/Game'                
-  /game/{id}:
-    get:
-      summary: "Retrieves single game based on gameId"
-      description: "gameId is primary key"
-      parameters: 
-        - name: "id"
-          in: "path"
-          required: true
-          description: "gameId to retrieve a single game" 
-          schema:
-            type: "number"
-            format: int64
-            minimum: 1
-            maximum: 11
-      responses:
-        '200':
-          description: "An object of game"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                items: 
                   $ref: '#/components/schemas/Game'
-  /games:
     get:
       summary: "Retrieves list of all games"
       responses:
@@ -258,8 +231,32 @@ paths:
               schema:
                 type: "string"
                 items: 
+                  $ref: '#/components/schemas/Game'                
+  /game/{id}:
+    get:
+      summary: "Retrieves single game based on gameId"
+      description: "gameId is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "gameId to retrieve a single game" 
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "An object of game"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
                   $ref: '#/components/schemas/Game'
-  /game/{title}:
+  
+  /game/title/{title}:
     get:
       summary: "Retrieves a list of games based on title"
       description: "title is an attibute of type string"
@@ -282,7 +279,7 @@ paths:
                 type: "object"
                 items: 
                   $ref: '#/components/schemas/Game'
-  /game/{studio}:
+  /game/studio/{studio}:
     get:
       summary: "Retrieves a list of games based on studio"
       description: "studio is an attibute of type string"
@@ -305,7 +302,7 @@ paths:
                 type: "object"
                 items: 
                   $ref: '#/components/schemas/Game'
-  /game/{ersb_rating}:
+  /game/esrb_rating/{ersb_rating}:
     get:
       summary: "Retrieves a list of games based on ersb_rating"
       description: "ersb_rating is an attibute of type string"
@@ -545,7 +542,7 @@ paths:
                 type: "string"
                 items: 
                   $ref: '#/components/schemas/Tshirt'
-  /tshirt/{color}:
+  /tshirt/color/{color}:
     get:
       summary: "Retrieves a list of tshirt based on color"
       description: "color is an attibute of type string"
@@ -565,7 +562,7 @@ paths:
                 type: "object"
                 items: 
                   $ref: '#/components/schemas/Tshirt' 
-  /tshirt/{size}:
+  /tshirt/size/{size}:
     get:
       summary: "Retrieves a list of tshirt based on size"
       description: "size is an attibute of type string"
