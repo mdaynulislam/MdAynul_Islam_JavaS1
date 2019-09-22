@@ -1,0 +1,153 @@
+openapi: 3.0.0
+info:
+  title: "Tasker Service"
+  description: >-
+    A simple Task tracking web service which will incorporate with a random Advertisement.
+  version: "0.0.1"
+servers:
+  - url: 'http://localhost:7979'
+    description: "Local dev server"
+paths:
+  /tasks:
+    post:
+      summary: "Creates single task"
+      description: "Store a Task in the Database"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: "An object of Task"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Task'
+    get:
+      summary: "Retrieves list of all tasks"
+      responses:
+        '200':
+          description: "A list of tasks"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items: 
+                  $ref: '#/components/schemas/Task'
+  /tasks/{id}:                
+    put:
+      summary: "Updates a single task based on id"
+      description: "Updates the task"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "taskId for a specific task"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: "An object of Task"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Task'
+        '422':
+          description: "Invalid Task Entry"
+    delete:
+      summary: "Deletes a single task based on id"
+      description: "delete the task from Database"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "taskId for a specific task"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '204':
+          description: "Task deleted"
+    get:
+      summary: "Retrieves single task based on taskId"
+      description: "retrieve the task by the Id provided"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "taskId to retrieve a single task" 
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "An object of task"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Task'
+  /tasks/category/{category}:
+    get:
+      summary: "Retrieves a list of tasks based on category"
+      description: "category is an attibute of type string"
+      parameters: 
+        - name: "category"
+          in: "path"
+          required: true
+          description: "category is required to retrieve a list of tasks"
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "An list of tasks"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Task'
+components:
+  schemas:
+    Task:
+      type: "object"
+      properties:
+        taskId:
+          type: "number"
+        description:
+          type: "string"
+        createDate:
+          type: "string"
+          format: date
+        dueDate:
+          type: "string"
+          format: date
+        category:
+          type: "string"
+      required:
+        - "description"
+        - "createDate"
+        - "dueDate"
+        - "category"
+
+    
