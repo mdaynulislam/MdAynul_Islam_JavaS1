@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/starter-code/comment-service/pom.xml" />
+        <option value="$PROJECT_DIR$/starter-code/post-service/pom.xml" />
+        <option value="$PROJECT_DIR$/sTwitter-Config-Server/sTwitter-Config-Server/pom.xml" />
+        <option value="$PROJECT_DIR$/sTwitter-Eureka-Registry/sTwitter-Eureka-Registry/pom.xml" />
+        <option value="$PROJECT_DIR$/starter-code/stwitter-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Comment-Queue-Consumer/Comment-Queue-Consumer/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

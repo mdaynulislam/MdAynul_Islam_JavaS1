@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Comment-Queue-Consumer/Comment-Queue-Consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sTwitter-Config-Server/sTwitter-Config-Server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sTwitter-Eureka-Registry/sTwitter-Eureka-Registry" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/starter-code/comment-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/starter-code/post-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/starter-code/stwitter-service" charset="UTF-8" />
+  </component>
+</project>

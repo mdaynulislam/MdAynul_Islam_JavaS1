@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Comment-Queue-Consumer/Comment-Queue-Consumer/Comment-Queue-Consumer.iml" filepath="$PROJECT_DIR$/Comment-Queue-Consumer/Comment-Queue-Consumer/Comment-Queue-Consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/starter-code/comment-service/comment-service.iml" filepath="$PROJECT_DIR$/starter-code/comment-service/comment-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/starter-code/post-service/post-service.iml" filepath="$PROJECT_DIR$/starter-code/post-service/post-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sTwitter-Config-Server/sTwitter-Config-Server/sTwitter-Config-Server.iml" filepath="$PROJECT_DIR$/sTwitter-Config-Server/sTwitter-Config-Server/sTwitter-Config-Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sTwitter-Eureka-Registry/sTwitter-Eureka-Registry/sTwitter-Eureka-Registry.iml" filepath="$PROJECT_DIR$/sTwitter-Eureka-Registry/sTwitter-Eureka-Registry/sTwitter-Eureka-Registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/starter-code/stwitter-service/stwitter-service.iml" filepath="$PROJECT_DIR$/starter-code/stwitter-service/stwitter-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/summative.iml" filepath="$PROJECT_DIR$/.idea/summative.iml" />
+    </modules>
+  </component>
+</project>
