@@ -1,26 +1,15 @@
 package com.trilogyed.comment.viewmodel;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class CommentViewModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentId;
     private int postId;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate createDate;
-
+    private String createDate;
     private String commenterName;
     private String comment;
-
-    //getters and setters
 
     public int getCommentId() {
         return commentId;
@@ -38,11 +27,11 @@ public class CommentViewModel {
         this.postId = postId;
     }
 
-    public LocalDate getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -62,23 +51,20 @@ public class CommentViewModel {
         this.comment = comment;
     }
 
-    //Equal and hashcode
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof CommentViewModel)) return false;
         CommentViewModel that = (CommentViewModel) o;
-        return commentId == that.commentId &&
-                postId == that.postId &&
-                createDate.equals(that.createDate) &&
-                commenterName.equals(that.commenterName) &&
-                comment.equals(that.comment);
+        return getCommentId() == that.getCommentId() &&
+                getPostId() == that.getPostId() &&
+                getCreateDate().equals(that.getCreateDate()) &&
+                getCommenterName().equals(that.getCommenterName()) &&
+                getComment().equals(that.getComment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentId, postId, createDate, commenterName, comment);
+        return Objects.hash(getCommentId(), getPostId(), getCreateDate(), getCommenterName(), getComment());
     }
 }

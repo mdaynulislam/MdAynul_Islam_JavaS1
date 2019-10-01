@@ -1,7 +1,8 @@
 package com.trilogyed.comment.controller;
 
 
-import javassist.NotFoundException;
+
+import com.trilogyed.comment.exception.NotFoundException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;

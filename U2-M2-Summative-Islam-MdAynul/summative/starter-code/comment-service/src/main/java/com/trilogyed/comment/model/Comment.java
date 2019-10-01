@@ -1,19 +1,11 @@
 package com.trilogyed.comment.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name="comment")
+
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentId;
     private int postId;
     private LocalDate createDate;
@@ -78,5 +70,16 @@ public class Comment {
     @Override
     public int hashCode() {
         return Objects.hash(commentId, postId, createDate, commenterName, comment);
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", postId=" + postId +
+                ", createDate=" + createDate +
+                ", commenterName='" + commenterName + '\'' +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }

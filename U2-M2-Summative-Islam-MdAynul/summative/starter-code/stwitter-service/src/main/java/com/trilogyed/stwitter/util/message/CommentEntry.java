@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class CommentEntry {
 
-    //Comment Properties with the commentId
+    //Comment Properties without the commentId
 
-    private int commentId;
+
     private int postId;
-    private LocalDate createDate;
+    private String createDate;
     private String commenterName;
     private String comment;
 
@@ -16,8 +16,8 @@ public class CommentEntry {
 
     //constructor
 
-    public CommentEntry(int commentId, int postId, LocalDate createDate, String commenterName, String comment) {
-        this.commentId = commentId;
+    public CommentEntry( int postId, String createDate, String commenterName, String comment) {
+
         this.postId = postId;
         this.createDate = createDate;
         this.commenterName = commenterName;
@@ -27,14 +27,6 @@ public class CommentEntry {
 
     //getters and setters
 
-    public int getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
-    }
-
     public int getPostId() {
         return postId;
     }
@@ -43,11 +35,11 @@ public class CommentEntry {
         this.postId = postId;
     }
 
-    public LocalDate getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -70,12 +62,10 @@ public class CommentEntry {
 
     //toString method
 
-
     @Override
     public String toString() {
         return "CommentEntry{" +
-                "commentId=" + commentId +
-                ", postId=" + postId +
+                "postId=" + postId +
                 ", createDate=" + createDate +
                 ", commenterName='" + commenterName + '\'' +
                 ", comment='" + comment + '\'' +

@@ -1,77 +1,80 @@
 package com.trilogyed.comment.controller;
 
-
 import com.trilogyed.comment.exception.NotFoundException;
 import com.trilogyed.comment.service.ServiceLayer;
 import com.trilogyed.comment.viewmodel.CommentViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RefreshScope
+@CacheConfig(cacheNames = {"comments"})
+@RequestMapping("/comments")
 public class CommentController {
 
 
     @Autowired
-    private ServiceLayer service;
+    ServiceLayer service;
 
-   //Create comment
-
-    @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public CommentViewModel createComment (@RequestBody @Valid CommentViewModel cvm){
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentViewModel createComment(@RequestBody CommentViewModel cvm) {
 
         return service.createComment(cvm);
+
     }
 
-   //read comment
-
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
-    @ResponseStatus(value = HttpStatus.OK)
-    public CommentViewModel readComment(@PathVariable int id){
-        CommentViewModel cvm = service.readComment(id);
-
+    @GetMapping("/{id}")
+    @Cacheable
+    @ResponseStatus(HttpStatus.OK)
+    public CommentViewModel getComment(@PathVariable("id") int commentId) {
+        CommentViewModel cvm = service.getComment(commentId);
         if (cvm == null)
-            throw new NotFoundException("Cannot find your comment with that id number: "+ id+ ".");
+            throw new NotFoundException("Cannot find id: " + commentId);
         return cvm;
+
     }
 
-    //Read all Comment
-
-    @RequestMapping(value = "/comments", method = RequestMethod.GET)
-    @ResponseStatus(value = HttpStatus.OK)
-    public List<CommentViewModel> readAllComments(){
-
-        return service.readAllComments();
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<CommentViewModel> getAllComments(){
+        return service.getAllComments();
     }
 
-   //Update Comment
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.PUT)
-    public String updateComment(@PathVariable int id, @RequestBody CommentViewModel cvm){
-        if (cvm.getCommentId() == 0)
-            cvm.setCommentId(id);
-        if (id != cvm.getCommentId()) {
-            throw new IllegalArgumentException("The id doesn't match with the existing data");
-        }
+
+    @CacheEvict
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteComment(@PathVariable("id") int commentId){
+        service.deleteComment(commentId);
+        return "Comment successfully deleted.";
+    }
+
+
+    @PutMapping("/{id}")
+    @CacheEvict(key = "#comment.getId()")
+    @ResponseStatus(HttpStatus.OK)
+    public String updateComment(@PathVariable("id") int commentId, @RequestBody CommentViewModel cvm) {
         service.updateComment(cvm);
-
-        return "Your comment has been updated.";
+        return "Comment successfully updated.";
     }
 
-    //delete Comment
+    @RequestMapping(value = "/poster/{id}", method = RequestMethod.GET)
+    public List<CommentViewModel> getCommentByPostId(@PathVariable("id") int postId) {
 
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public String deleteComment(@PathVariable int id){
-
-        service.deleteComment(id);
-
-        return "Comment has been deleted";
+        List<CommentViewModel> cList = service.getCommentByPostId(postId);
+        if (cList.size() == 0)
+            throw new NotFoundException("Cannot find comment with this post id: " + postId);
+        return cList;
     }
+
+
 
 }

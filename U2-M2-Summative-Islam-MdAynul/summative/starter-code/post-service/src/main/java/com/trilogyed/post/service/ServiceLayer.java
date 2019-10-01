@@ -19,7 +19,6 @@ public class ServiceLayer {
         this.postDao = postDao;
     }
 
-
     public PostViewModel createPost(PostViewModel pvm) {
         Post post = new Post();
         post.setPostDate(pvm.getPostDate());
@@ -80,11 +79,9 @@ public class ServiceLayer {
         else
             return pvmList;
     }
-
-    /****************************** Helper Method *****************************************************/
+/********************************* Helper Method ************************************/
 
     private PostViewModel buildPostViewModel(Post post) {
-
         PostViewModel pvm = new PostViewModel();
         pvm.setPostId(post.getPostId());
         pvm.setPostDate(post.getPostDate());
@@ -93,5 +90,6 @@ public class ServiceLayer {
 
         return pvm;
     }
+
 
 }

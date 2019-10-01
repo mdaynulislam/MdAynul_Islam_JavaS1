@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class CommentEntry {
 
-    //Comment Properties without the commentId
+    //Comment Properties
+    private int commentId;
     private int postId;
     private LocalDate createDate;
     private String commenterName;
@@ -13,14 +14,26 @@ public class CommentEntry {
     public CommentEntry(){} // Default constructor Jackson need it to convert the message
 
     //constructor
-    public CommentEntry(int postId, LocalDate createDate, String commenterName, String comment) {
+
+    public CommentEntry(int commentId, int postId, LocalDate createDate, String commenterName, String comment) {
+        this.commentId = commentId;
         this.postId = postId;
         this.createDate = createDate;
         this.commenterName = commenterName;
         this.comment = comment;
     }
 
+
     //getters and setters
+
+
+    public int getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
 
     public int getPostId() {
         return postId;
@@ -56,10 +69,12 @@ public class CommentEntry {
 
     //toString method
 
+
     @Override
     public String toString() {
         return "CommentEntry{" +
-                "postId=" + postId +
+                "commentId=" + commentId +
+                ", postId=" + postId +
                 ", createDate=" + createDate +
                 ", commenterName='" + commenterName + '\'' +
                 ", comment='" + comment + '\'' +

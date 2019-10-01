@@ -4,14 +4,19 @@ import com.trilogyed.post.exception.NotFoundException;
 import com.trilogyed.post.service.ServiceLayer;
 import com.trilogyed.post.viewModel.PostViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CacheConfig(cacheNames = {"posts"})
 @RefreshScope
 @RequestMapping("/posts")
+@RestController
 public class PostController {
 
     @Autowired
@@ -27,6 +32,7 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
+    @Cacheable
     @ResponseStatus(HttpStatus.OK)
     public PostViewModel getPost(@PathVariable("id") int id) {
         PostViewModel pvm = service.getPost(id);
@@ -42,7 +48,7 @@ public class PostController {
         return service.getAllPosts();
     }
 
-
+    @CacheEvict
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public String deletePost(@PathVariable("id") int id){
@@ -52,6 +58,7 @@ public class PostController {
 
 
     @PutMapping("/{id}")
+    @CacheEvict(key = "#post.getId()")
     @ResponseStatus(HttpStatus.OK)
     public String updatePost(@PathVariable("id") int id, @RequestBody PostViewModel pvm) {
         service.updatePost(pvm);
@@ -59,8 +66,8 @@ public class PostController {
     }
 
 
-    @RequestMapping(value = "/posts/user/{poster_name}", method = RequestMethod.GET)
-    public List<PostViewModel> getPostByPosterName( @PathVariable(name="poster_name") String posterName) {
+    @RequestMapping(value = "/posts/user/{postername}", method = RequestMethod.GET)
+    public List<PostViewModel> getPostByPosterName( @PathVariable(name="postername") String posterName) {
 
         List<PostViewModel> pvmList = service.getPostByPosterName(posterName);
         if (pvmList.size() == 0)

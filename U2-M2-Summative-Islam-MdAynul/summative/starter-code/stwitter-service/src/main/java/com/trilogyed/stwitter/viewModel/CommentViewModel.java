@@ -7,7 +7,7 @@ public class CommentViewModel {
     private int commentId;
     private int postId;
     private String commenterName;
-    private LocalDate commentDate;
+    private String commentDate;
     private String comment;
 
     public int getCommentId() {
@@ -34,11 +34,11 @@ public class CommentViewModel {
         this.commenterName = commenterName;
     }
 
-    public LocalDate getCommentDate() {
+    public String getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(LocalDate commentDate) {
+    public void setCommentDate(String commentDate) {
         this.commentDate = commentDate;
     }
 

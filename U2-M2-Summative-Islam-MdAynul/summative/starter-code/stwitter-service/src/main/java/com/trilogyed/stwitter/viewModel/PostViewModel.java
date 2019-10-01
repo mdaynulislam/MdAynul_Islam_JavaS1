@@ -6,10 +6,11 @@ import java.util.Objects;
 
 public class PostViewModel {
     private int postId;
-    private String post;
     private LocalDate postDate;
     private String posterName;
-    private List<String> comments;
+    private String post;
+
+    //getters and setters
 
     public int getPostId() {
         return postId;
@@ -17,14 +18,6 @@ public class PostViewModel {
 
     public void setPostId(int postId) {
         this.postId = postId;
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
     }
 
     public LocalDate getPostDate() {
@@ -43,28 +36,29 @@ public class PostViewModel {
         this.posterName = posterName;
     }
 
-    public List<String> getComments() {
-        return comments;
+    public String getPost() {
+        return post;
     }
 
-    public void setComments(List<String> comments) {
-        this.comments = comments;
+    public void setPost(String post) {
+        this.post = post;
     }
+
+    //Equal and hashcode
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PostViewModel)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         PostViewModel that = (PostViewModel) o;
-        return getPostId() == that.getPostId() &&
-                getPost().equals(that.getPost()) &&
-                getPostDate().equals(that.getPostDate()) &&
-                getPosterName().equals(that.getPosterName()) &&
-                getComments().equals(that.getComments());
+        return postId == that.postId &&
+                postDate.equals(that.postDate) &&
+                posterName.equals(that.posterName) &&
+                post.equals(that.post);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPostId(), getPost(), getPostDate(), getPosterName(), getComments());
+        return Objects.hash(postId, postDate, posterName, post);
     }
 }

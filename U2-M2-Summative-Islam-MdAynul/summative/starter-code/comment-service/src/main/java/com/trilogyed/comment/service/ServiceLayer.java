@@ -1,121 +1,98 @@
 package com.trilogyed.comment.service;
 
 
+
+import com.trilogyed.comment.dao.CommentDao;
 import com.trilogyed.comment.model.Comment;
-import com.trilogyed.comment.repository.CommentRepository;
 import com.trilogyed.comment.viewmodel.CommentViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Repository
+@Component
 public class ServiceLayer {
 
-    private CommentRepository repo;
-
+    private CommentDao commentDao;
 
     @Autowired
-    public ServiceLayer(CommentRepository repo) {
-        this.repo = repo;
-
+    public ServiceLayer(CommentDao commentDao) {
+        this.commentDao = commentDao;
     }
 
-    //Create Comment
-    public  CommentViewModel createComment(CommentViewModel cvm){
-
-        Comment comment= new Comment();
-        comment.setPostId(cvm.getPostId());
-        comment.setCreateDate(cvm.getCreateDate());
-        comment.setCommenterName(cvm.getCommenterName());
-        comment.setComment(cvm.getComment());
-
-        comment= repo.save(comment);
-        cvm.setCommentId(comment.getCommentId());
+    private CommentViewModel buildCommentViewModel(Comment c) {
+        CommentViewModel cvm = new CommentViewModel();
+        cvm.setCommentId(c.getCommentId());
+        cvm.setPostId(c.getPostId());
+        cvm.setCreateDate(String.valueOf(c.getCreateDate()));
+        cvm.setCommenterName(c.getCommenterName());
+        cvm.setComment(c.getComment());
 
         return cvm;
     }
 
-    //Read Comment
 
-    public  CommentViewModel readComment(int id){
-        Comment comment = repo.getOne(id);
+    public CommentViewModel createComment(CommentViewModel cvm) {
+        Comment c = new Comment();
+        c.setPostId(cvm.getPostId());
+        c.setCreateDate(LocalDate.parse(cvm.getCreateDate()));
+        c.setCommenterName(cvm.getCommenterName());
+        c.setComment(cvm.getComment());
+        c =  commentDao.createComment(c);
 
-        if(comment == null){
-            throw new NumberFormatException("Can't find comment with that id number: "+ id+ ". " +
-                    "Perhaps your input was not a number.");
-
-        }
-        return buildCommentViewModel(comment);
+        cvm.setCommentId(c.getCommentId());
+        return cvm;
     }
 
-    //Read All Comment
+    public CommentViewModel getComment(int commentId) {
+        Comment c =  commentDao.getComment(commentId);
+        if(c==null){
+            throw new NumberFormatException("Cannot find id " + commentId);
+        }
+        return buildCommentViewModel(c);
+    }
 
-    public List<CommentViewModel> readAllComments(){
-        List<Comment> comments = repo.findAll();
+    public List<CommentViewModel> getAllComments() {
+        List<Comment> comment = commentDao.getAllComments();
         List<CommentViewModel> cList = new ArrayList<>();
-
-        comments.stream()
-                .forEach(comment -> {
-                    CommentViewModel cvm = buildCommentViewModel(comment);
-                    cList.add(cvm);
-                });
-
-
+        for (Comment c : comment) {
+            CommentViewModel cvm = buildCommentViewModel(c);
+            cList.add(cvm);
+        }
         return cList;
     }
 
-    //update Comment
-
-    public CommentViewModel updateComment(CommentViewModel cvm) {
-        Comment c = new Comment();
-        c.setCommentId(cvm.getCommentId());
-        c.setPostId(cvm.getPostId());
-        c.setCreateDate(cvm.getCreateDate());
-        c.setCommenterName(cvm.getCommenterName());
-        c.setComment(cvm.getComment());
-
-         repo.save(c);
-        cvm.setCommentId(c.getCommentId());
-
-        Optional<Comment> comment = repo.findById(cvm.getCommentId());
-
-
-        CommentViewModel commentViewModel = new CommentViewModel();
-
-        commentViewModel.setCommentId(comment.get().getCommentId());
-        commentViewModel.setPostId(comment.get().getPostId());
-        commentViewModel.setCreateDate(comment.get().getCreateDate());
-        commentViewModel.setCommenterName(comment.get().getCommenterName());
-        commentViewModel.setComment(comment.get().getComment());
-
-        return commentViewModel;
+    public void deleteComment(int commentId)
+    {
+        commentDao.deleteComment(commentId);
     }
 
-    //delete Comment
-
-    public void deleteComment(int id){
-        repo.deleteById(id);
-    }
-
-
-    /*******************************Helper Method*****************************************/
-
-    public CommentViewModel buildCommentViewModel(Comment comment){
-        CommentViewModel cvm = new CommentViewModel();
-        if(comment == null){
-            cvm = null;
-        }else{
-            cvm.setCommentId(comment.getCommentId());
-            cvm.setPostId(comment.getPostId());
-            cvm.setCreateDate(comment.getCreateDate());
-            cvm.setCommenterName(comment.getCommenterName());
-            cvm.setComment(comment.getComment());
-        }
+    public CommentViewModel updateComment(CommentViewModel cvm)
+    {
+        Comment comment = new Comment();
+        comment.setCommentId(cvm.getCommentId());
+        comment.setPostId(cvm.getPostId());
+        comment.setCreateDate(LocalDate.parse(cvm.getCreateDate()));
+        comment.setCommenterName(cvm.getCommenterName());
+        comment.setComment(cvm.getComment());
+        commentDao.updateComment(comment);
 
         return cvm;
+    }
+
+    public List<CommentViewModel> getCommentByPostId(int postId) {
+        List<Comment> cList = commentDao.getCommentByPost(postId);
+        List<CommentViewModel> cvmList = new ArrayList<>();
+
+        for (Comment c : cList) {
+            cvmList.add(buildCommentViewModel(c));
+        }
+        if (cList.size() == 0)
+            return null;
+        else
+            return cvmList;
     }
 
 }
