@@ -16,7 +16,7 @@
   </component>
   <component name="ProjectId" id="1RYwLlriT0P21OyN2RJYSqpsNa5" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Sakib bhai/U2-M2-Summative-Karim-Shakib/U2-M2-Summative-Karim-Shakib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RunDashboard">
@@ -31,7 +31,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StwitterServiceApplication">
+  <component name="RunManager" selected="Application.STwitterConfigServerApplication">
+    <configuration name="CommentQueueConsumerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trilogyed.CommentQueueConsumer.CommentQueueConsumerApplication" />
+      <module name="Comment-Queue-Consumer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trilogyed.CommentQueueConsumer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CommentServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trilogyed.comment.CommentServiceApplication" />
       <module name="comment-service" />
@@ -71,19 +84,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="STwitterEurekaRegistryApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trilogyed.sTwitterEurekaRegistry.STwitterEurekaRegistryApplication" />
-      <module name="sTwitter-Eureka-Registry" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trilogyed.sTwitterEurekaRegistry.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StwitterServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trilogyed.stwitter.StwitterServiceApplication" />
       <module name="stwitter-service" />
@@ -99,10 +99,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StwitterServiceApplication" />
         <item itemvalue="Application.CommentServiceApplication" />
+        <item itemvalue="Application.StwitterServiceApplication" />
+        <item itemvalue="Application.CommentQueueConsumerApplication" />
         <item itemvalue="Application.PostServiceApplication" />
-        <item itemvalue="Application.STwitterEurekaRegistryApplication" />
         <item itemvalue="Application.STwitterConfigServerApplication" />
       </list>
     </recent_temporary>

@@ -48,23 +48,6 @@ public class ServiceLayer {
         return pvm;
     }
 
-    private CommentViewModel buildCommentViewModel(Comment comment){
-        CommentViewModel cvm = new CommentViewModel();
-
-        if(comment == null){
-            cvm = null;
-        }else{
-            cvm.setCommentId(comment.getCommentId());
-            cvm.setPostId(comment.getPostId());
-            cvm.setCommenterName(comment.getCommenterName());
-            cvm.setCommentDate(String.valueOf(comment.getCommentDate()));
-            cvm.setComment(comment.getComment());
-        }
-
-        return cvm;
-
-    }
-
 
     public PostCommentViewModel createPost(PostCommentViewModel pcvm) {
         PostViewModel pvm = new PostViewModel();

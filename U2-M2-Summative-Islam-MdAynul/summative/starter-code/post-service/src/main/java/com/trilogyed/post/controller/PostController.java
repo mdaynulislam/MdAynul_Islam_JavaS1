@@ -6,6 +6,7 @@ import com.trilogyed.post.viewModel.PostViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class PostController {
 
 
     @PostMapping
+    @CachePut(key = "#result.getPostId")
     @ResponseStatus(HttpStatus.CREATED)
     public PostViewModel createPost(@RequestBody PostViewModel pvm) {
 
@@ -58,7 +60,7 @@ public class PostController {
 
 
     @PutMapping("/{id}")
-    @CacheEvict(key = "#post.getId()")
+    @CacheEvict(key = "#pvm.getPostId()")
     @ResponseStatus(HttpStatus.OK)
     public String updatePost(@PathVariable("id") int id, @RequestBody PostViewModel pvm) {
         service.updatePost(pvm);
@@ -66,12 +68,12 @@ public class PostController {
     }
 
 
-    @RequestMapping(value = "/posts/user/{postername}", method = RequestMethod.GET)
-    public List<PostViewModel> getPostByPosterName( @PathVariable(name="postername") String posterName) {
+    @RequestMapping(value = "/user/{postername}", method = RequestMethod.GET)
+    public List<PostViewModel> getPostByPosterName( @PathVariable("postername") String posterName) {
 
         List<PostViewModel> pvmList = service.getPostByPosterName(posterName);
         if (pvmList.size() == 0)
-            throw new NotFoundException("Cannot find poster" + posterName);
+            throw new NotFoundException("Cannot find poster: " + posterName);
         return pvmList;
     }
 }

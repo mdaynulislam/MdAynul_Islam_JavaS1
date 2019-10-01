@@ -59,7 +59,7 @@ public class CommentController {
 
 
     @PutMapping("/{id}")
-    @CacheEvict(key = "#comment.getId()")
+    @CacheEvict(key = "#cvm.getCommentId()")
     @ResponseStatus(HttpStatus.OK)
     public String updateComment(@PathVariable("id") int commentId, @RequestBody CommentViewModel cvm) {
         service.updateComment(cvm);
