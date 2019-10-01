@@ -7,25 +7,24 @@ public class CommentEntry {
     //Comment Properties
     private int commentId;
     private int postId;
-    private LocalDate createDate;
     private String commenterName;
+    private LocalDate commentDate;
     private String comment;
 
     public CommentEntry(){} // Default constructor Jackson need it to convert the message
 
     //constructor
 
-    public CommentEntry(int commentId, int postId, LocalDate createDate, String commenterName, String comment) {
+    public CommentEntry(int commentId, int postId, String commenterName, LocalDate commentDate, String comment) {
         this.commentId = commentId;
         this.postId = postId;
-        this.createDate = createDate;
         this.commenterName = commenterName;
+        this.commentDate = commentDate;
         this.comment = comment;
     }
 
 
     //getters and setters
-
 
     public int getCommentId() {
         return commentId;
@@ -43,20 +42,20 @@ public class CommentEntry {
         this.postId = postId;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
-    }
-
     public String getCommenterName() {
         return commenterName;
     }
 
     public void setCommenterName(String commenterName) {
         this.commenterName = commenterName;
+    }
+
+    public LocalDate getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(LocalDate commentDate) {
+        this.commentDate = commentDate;
     }
 
     public String getComment() {
@@ -67,6 +66,7 @@ public class CommentEntry {
         this.comment = comment;
     }
 
+
     //toString method
 
 
@@ -75,8 +75,8 @@ public class CommentEntry {
         return "CommentEntry{" +
                 "commentId=" + commentId +
                 ", postId=" + postId +
-                ", createDate=" + createDate +
                 ", commenterName='" + commenterName + '\'' +
+                ", commentDate=" + commentDate +
                 ", comment='" + comment + '\'' +
                 '}';
     }

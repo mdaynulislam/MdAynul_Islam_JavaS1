@@ -8,19 +8,18 @@ public class CommentEntry {
 
 
     private int postId;
-    private String createDate;
     private String commenterName;
+    private String createDate;
     private String comment;
 
     public CommentEntry(){} // Default constructor Jackson need it to convert the message
 
     //constructor
 
-    public CommentEntry( int postId, String createDate, String commenterName, String comment) {
-
+    public CommentEntry(int postId, String commenterName, String createDate, String comment) {
         this.postId = postId;
-        this.createDate = createDate;
         this.commenterName = commenterName;
+        this.createDate = createDate;
         this.comment = comment;
     }
 
@@ -66,8 +65,8 @@ public class CommentEntry {
     public String toString() {
         return "CommentEntry{" +
                 "postId=" + postId +
-                ", createDate=" + createDate +
                 ", commenterName='" + commenterName + '\'' +
+                ", createDate='" + createDate + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }

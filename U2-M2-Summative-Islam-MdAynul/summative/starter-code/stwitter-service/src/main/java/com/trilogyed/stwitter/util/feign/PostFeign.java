@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "post-service")
-@RequestMapping("/posts")
+//@RequestMapping("/posts")
 public interface PostFeign {
 
     @RequestMapping(value = "/posts", method = RequestMethod.POST)
