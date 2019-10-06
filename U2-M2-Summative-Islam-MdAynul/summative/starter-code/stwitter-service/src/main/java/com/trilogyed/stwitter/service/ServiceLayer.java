@@ -1,14 +1,11 @@
 package com.trilogyed.stwitter.service;
 
-import com.trilogyed.stwitter.util.feign.CommentFeign;
-import com.trilogyed.stwitter.util.feign.PostFeign;
+import com.trilogyed.stwitter.exception.NotFoundException;
 import com.trilogyed.stwitter.model.Comment;
-import com.trilogyed.stwitter.util.message.CommentEntry;
-import com.trilogyed.stwitter.viewModel.CommentViewModel;
-import com.trilogyed.stwitter.viewModel.PostCommentViewModel;
+import com.trilogyed.stwitter.model.Post;
+import com.trilogyed.stwitter.util.feign.CommentClient;
+import com.trilogyed.stwitter.util.feign.PostClient;
 import com.trilogyed.stwitter.viewModel.PostViewModel;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,97 +14,98 @@ import java.util.List;
 @Component
 public class ServiceLayer {
 
-    private PostFeign pClient;
-    private CommentFeign cClient;
+    //Feign Clients
+    PostClient postClient;
+    CommentClient commentClient;
 
-    //For RarbbitMQ
-    public static final String EXCHANGE = "comment-exchange";
-
-    //Routing key in Queue Comment "create.#"
-    public static final String ROUTING_KEY = "comment.create.stwitter.service";
-
-
-    private RabbitTemplate rabbitTemplate;
-
-    @Autowired
-    public ServiceLayer(PostFeign pClient, CommentFeign cClient, RabbitTemplate rabbitTemplate) {
-        this.pClient = pClient;
-        this.cClient = cClient;
-        this.rabbitTemplate = rabbitTemplate;
+    //Constructor
+    public ServiceLayer(PostClient postClient, CommentClient commentClient) {
+        this.postClient = postClient;
+        this.commentClient = commentClient;
     }
 
+    //For The Post
 
-    private PostCommentViewModel buildPostViewModel(PostViewModel post) {
-
-        PostCommentViewModel pvm = new PostCommentViewModel();
-        pvm.setPostId(post.getPostId());
-        pvm.setPost(post.getPost());
-        pvm.setPostDate(post.getPostDate());
-        pvm.setPosterName(post.getPosterName());
-
-        return pvm;
+    public PostViewModel savePost(Post post) {
+        post = postClient.createPost(post);
+        return buildPostViewModel(post);
     }
 
-
-    public PostCommentViewModel createPost(PostCommentViewModel pcvm) {
-        PostViewModel pvm = new PostViewModel();
-        pvm.setPostDate(pcvm.getPostDate());
-        pvm.setPosterName(pcvm.getPosterName());
-        pvm.setPost(pcvm.getPost());
-        pvm = pClient.createPost(pvm);
-
-        PostCommentViewModel pcvm2 = buildPostViewModel(pvm);
-
-        return pcvm2;
+    public PostViewModel findPost(int id) {
+        Post post = postClient.getPost(id);
+        if (post == null) {
+            throw new NotFoundException("Sorry, we cannot find a post with that id. ");
+        }
+        return buildPostViewModel(post);
     }
 
+    //For the Comment
 
-    public PostCommentViewModel getPost(int postId) {
-        PostViewModel p =  pClient.getPost(postId);
-        if(p==null){
-            throw new NumberFormatException("Cannot find id " + postId);
+    public List<Comment> findAllComments() {
+        return commentClient.getAllComments();
+    }
+
+    public List<Comment> findAllCommentsByCommenter(String commenterName) {
+        return commentClient.getCommentsByCommenter(commenterName);
+    }
+
+    public Comment findCommentById(int id) {
+        return commentClient.getCommentById(id);
+    }
+
+    public void removeComment(int id) {
+        commentClient.deleteComment(id);
+    }
+
+    public List<PostViewModel> findAllPosts() {
+        List<Post> posts = postClient.getPosts();
+        List<PostViewModel> pvmList = new ArrayList<>();
+
+        for(Post p: posts) {
+            PostViewModel pvm = buildPostViewModel(p);
+            pvmList.add(pvm);
         }
 
-        PostCommentViewModel pcvm = buildPostViewModel(p);
-
-        List<CommentViewModel> listComments = cClient.getCommentByPostId(postId);
-
-        List<String> comments = new ArrayList<>();
-
-        for(int i = 0; i < listComments.size(); i++ ){
-            comments.add(listComments.get(i).getComment());
-        }
-
-        pcvm.setComments(comments);
-
-
-        return pcvm;
+        return pvmList;
     }
 
-    public List<PostCommentViewModel> getPostByPosterName(String posterName) {
-        List<PostViewModel> pList = pClient.getPostByPosterName(posterName);
-        List<PostCommentViewModel> pvmList = new ArrayList<>();
+    public List<PostViewModel> findPostsByPoster(String posterName) {
+        List<Post> posts = postClient.getPostsByPoster(posterName);
+        List<PostViewModel> pvmList = new ArrayList<>();
 
-        for (PostViewModel p : pList) {
-            pvmList.add(buildPostViewModel(p));
+        for(Post p: posts) {
+            PostViewModel pvm = buildPostViewModel(p);
+            pvmList.add(pvm);
         }
-        if (pList.size() == 0)
-            return null;
-        else
-            return pvmList;
+
+        return pvmList;
     }
 
-    public String createComment(CommentViewModel cvm){
+    public void updatePost(Post post) {
+        postClient.updatePost(post.getPostId(), post);
+    }
 
-        CommentEntry ce = new CommentEntry(cvm.getPostId(), cvm.getCommenterName(), cvm.getCommentDate(), cvm.getComment());
+    public void removePost(int id) {
+        postClient.deletePost(id);
+    }
+    public List<Comment> findCommentsByPostId(int id) {
+        return commentClient.getCommentsByPostId(id);
+    }
+    /*********************************Helper Method ********************************/
 
-        System.out.println("Sending Message");
+    private  PostViewModel buildPostViewModel(Post post){
 
-        rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, ce);
+        PostViewModel postViewModel = new PostViewModel();
 
-        System.out.println("Sent");
+        postViewModel .setPostId(post.getPostId());
+        postViewModel.setPostDate(post.getPostDate());
+        postViewModel.setPosterName(post.getPosterName());
+        postViewModel.setPost(post.getPost());
 
-        return "Comment added";
+        //for the comments
+        List<Comment> comments = findCommentsByPostId(post.getPostId());
+        postViewModel.setComments(comments);
 
+        return postViewModel;
     }
 }

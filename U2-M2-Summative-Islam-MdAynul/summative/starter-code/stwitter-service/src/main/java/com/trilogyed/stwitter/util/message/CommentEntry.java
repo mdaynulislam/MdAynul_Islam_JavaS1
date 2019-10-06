@@ -1,30 +1,33 @@
 package com.trilogyed.stwitter.util.message;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class CommentEntry {
 
-    //Comment Properties without the commentId
-
-
+    private int commentId;
+    @NotNull(message = "Must enter a post Id.")
     private int postId;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    private LocalDate createDate;
+    @Size(min = 2, message = "Must enter a commenterName.")
     private String commenterName;
-    private String createDate;
+    @Size(min = 2, message = "Must enter a comment.")
     private String comment;
 
-    public CommentEntry(){} // Default constructor Jackson need it to convert the message
+    //getters and setters
 
-    //constructor
 
-    public CommentEntry(int postId, String commenterName, String createDate, String comment) {
-        this.postId = postId;
-        this.commenterName = commenterName;
-        this.createDate = createDate;
-        this.comment = comment;
+    public int getCommentId() {
+        return commentId;
     }
 
-
-    //getters and setters
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
 
     public int getPostId() {
         return postId;
@@ -34,11 +37,11 @@ public class CommentEntry {
         this.postId = postId;
     }
 
-    public String getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 
@@ -58,15 +61,15 @@ public class CommentEntry {
         this.comment = comment;
     }
 
-
-    //toString method
+    //to String()
 
     @Override
     public String toString() {
         return "CommentEntry{" +
-                "postId=" + postId +
+                "commentId=" + commentId +
+                ", postId=" + postId +
+                ", createDate=" + createDate +
                 ", commenterName='" + commenterName + '\'' +
-                ", createDate='" + createDate + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }

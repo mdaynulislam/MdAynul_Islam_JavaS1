@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PostDao {
 
-    Post createPost(Post post);
+    Post addPost(Post post);
 
     Post getPost(int id);
 
@@ -16,6 +16,6 @@ public interface PostDao {
 
     void deletePost(int postId);
 
-    List<Post> getPostByPosterName(String posterName);
+    List<Post> getPostsByPoster(String posterName);
 
 }

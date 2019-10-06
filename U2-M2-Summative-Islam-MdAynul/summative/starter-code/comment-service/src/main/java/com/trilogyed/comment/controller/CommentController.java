@@ -1,78 +1,65 @@
 package com.trilogyed.comment.controller;
 
-import com.trilogyed.comment.exception.NotFoundException;
-import com.trilogyed.comment.service.ServiceLayer;
-import com.trilogyed.comment.viewmodel.CommentViewModel;
+import com.trilogyed.comment.dao.CommentDao;
+import com.trilogyed.comment.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+
 @RestController
-@RefreshScope
-@CacheConfig(cacheNames = {"comments"})
+@RefreshScope // by the actuator which refresh all the beans in the scope by clearing the target cache
 @RequestMapping("/comments")
 public class CommentController {
 
 
     @Autowired
-    ServiceLayer service;
+    CommentDao commentDao;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public CommentViewModel createComment(@RequestBody CommentViewModel cvm) {
-
-        return service.createComment(cvm);
-
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Comment createComment(@RequestBody @Valid Comment comment){
+        return commentDao.addComment(comment);
     }
 
-    @GetMapping("/{id}")
-    @Cacheable
-    @ResponseStatus(HttpStatus.OK)
-    public CommentViewModel getComment(@PathVariable("id") int commentId) {
-        CommentViewModel cvm = service.getComment(commentId);
-        if (cvm == null)
-            throw new NotFoundException("Cannot find id: " + commentId);
-        return cvm;
-
+    @GetMapping(value = "{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public Comment findCommentById(@PathVariable int id){
+        return commentDao.getComment(id);
     }
-
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<CommentViewModel> getAllComments(){
-        return service.getAllComments();
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Comment> findAllComments(){
+        return commentDao.getAllComments();
     }
 
-
-    @CacheEvict
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public String deleteComment(@PathVariable("id") int commentId){
-        service.deleteComment(commentId);
-        return "Comment successfully deleted.";
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updateComment(@PathVariable int id, @RequestBody Comment comment){
+        commentDao.updateComment(comment);
     }
 
-
-    @PutMapping("/{id}")
-    @CacheEvict(key = "#cvm.getCommentId()")
-    @ResponseStatus(HttpStatus.OK)
-    public String updateComment(@PathVariable("id") int commentId, @RequestBody CommentViewModel cvm) {
-        service.updateComment(cvm);
-        return "Comment successfully updated.";
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteComment(@PathVariable int id){
+        commentDao.deleteComment(id);
     }
 
-    @RequestMapping(value = "/poster/{id}", method = RequestMethod.GET)
-    public List<CommentViewModel> getCommentByPostId(@PathVariable("id") int postId) {
+    @GetMapping(value = "/post/{postId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Comment> getCommentByPostId(@PathVariable int postId){
+       return commentDao.getCommentByPostId(postId);
 
-        List<CommentViewModel> cList = service.getCommentByPostId(postId);
-        if (cList.size() == 0)
-            throw new NotFoundException("Cannot find comment with this post id: " + postId);
-        return cList;
+    }
+
+    @GetMapping(value = "/commenter/{commenterName}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Comment> getCommentByCommenterName(@PathVariable String commenterName){
+        return commentDao.getCommentByCommenterName(commenterName);
     }
 
 }

@@ -1,79 +1,60 @@
 package com.trilogyed.post.controller;
 
-import com.trilogyed.post.exception.NotFoundException;
-import com.trilogyed.post.service.ServiceLayer;
-import com.trilogyed.post.viewModel.PostViewModel;
+import com.trilogyed.post.dao.PostDao;
+import com.trilogyed.post.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@CacheConfig(cacheNames = {"posts"})
+
 @RefreshScope
-@RequestMapping("/posts")
 @RestController
+@RequestMapping("/posts")
 public class PostController {
 
     @Autowired
-    ServiceLayer service;
-
+    PostDao postDao;
 
     @PostMapping
-    @CachePut(key = "#result.getPostId")
-    @ResponseStatus(HttpStatus.CREATED)
-    public PostViewModel createPost(@RequestBody PostViewModel pvm) {
-
-        return service.createPost(pvm);
-
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Post createPost(@RequestBody @Valid Post post){
+        return postDao.addPost(post);
     }
 
-    @GetMapping("/{id}")
-    @Cacheable
-    @ResponseStatus(HttpStatus.OK)
-    public PostViewModel getPost(@PathVariable("id") int id) {
-        PostViewModel pvm = service.getPost(id);
-        if (pvm == null)
-            throw new NotFoundException("Cannot find id: " + id);
-        return pvm;
-
+    @GetMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public Post getPost(@PathVariable int id){
+        return postDao.getPost(id);
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<PostViewModel> getAllPosts(){
-        return service.getAllPosts();
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Post> getAllPosts(){
+        return postDao.getAllPosts();
     }
 
-    @CacheEvict
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public String deletePost(@PathVariable("id") int id){
-        service.removePost(id);
-        return "Post successfully deleted.";
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updatePost(@RequestBody Post post, @PathVariable int id){
+        postDao.updatePost(post);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deletePost(@PathVariable int id){
+        postDao.deletePost(id);
+    }
+
+    @GetMapping(value = "/user/posterName")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Post> getPostsByPoster(@PathVariable String posterName){
+        return postDao.getPostsByPoster(posterName);
     }
 
 
-    @PutMapping("/{id}")
-    @CacheEvict(key = "#pvm.getPostId()")
-    @ResponseStatus(HttpStatus.OK)
-    public String updatePost(@PathVariable("id") int id, @RequestBody PostViewModel pvm) {
-        service.updatePost(pvm);
-        return "Post successfully updated.";
-    }
 
-
-    @RequestMapping(value = "/user/{postername}", method = RequestMethod.GET)
-    public List<PostViewModel> getPostByPosterName( @PathVariable("postername") String posterName) {
-
-        List<PostViewModel> pvmList = service.getPostByPosterName(posterName);
-        if (pvmList.size() == 0)
-            throw new NotFoundException("Cannot find poster: " + posterName);
-        return pvmList;
-    }
 }

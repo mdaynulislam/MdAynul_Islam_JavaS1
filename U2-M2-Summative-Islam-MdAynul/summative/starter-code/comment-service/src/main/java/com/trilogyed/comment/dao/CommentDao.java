@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface CommentDao {
 
-    Comment createComment(Comment comment);
+
+    Comment addComment(Comment comment);
 
     Comment getComment(int id);
+
 
     List<Comment> getAllComments();
 
@@ -16,5 +18,8 @@ public interface CommentDao {
 
     void deleteComment(int commentId);
 
-    List<Comment> getCommentByPost(int postId);
+    List<Comment> getCommentByPostId(int postId);
+
+    List<Comment> getCommentByCommenterName(String commenterName);
+
 }

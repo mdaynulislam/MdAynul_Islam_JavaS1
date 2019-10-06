@@ -20,21 +20,25 @@ public class CommentQueueConsumerApplication {
 	public static final String QUEUE_NAME = "comment-queue";
 	public static final String ROUTING_KEY = "comment.create.#";
 
+	// Creating a Queue Object that is needed to perform queues (will encapsulate Queue name)
 	@Bean
 	Queue queue() {
 		return new Queue(QUEUE_NAME, false);
 	}
 
+	// Will instantiate the Topic Exchange Object which we are using as Exchange
 	@Bean
 	TopicExchange exchange() {
 		return new TopicExchange(TOPIC_EXCHANGE_NAME);
 	}
 
+	// Binding the queue and exchange together  WITH the routing key for cohesive use
 	@Bean
 	Binding binding(Queue queue, TopicExchange exchange) {
 		return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
 	}
 
+	//Converting the message
 	@Bean
 	public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
 		return new Jackson2JsonMessageConverter();

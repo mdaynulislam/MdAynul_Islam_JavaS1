@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import java.util.List;
 @Repository
 public class PostDaoJdbcTemplateImpl implements PostDao {
 
-    private JdbcTemplate jdbcTemplate;
+
 
     private static final String INSERT_POST_SQL =
             "insert into post (post_date, poster_name, post) values (?, ?, ?)";
@@ -34,13 +35,15 @@ public class PostDaoJdbcTemplateImpl implements PostDao {
             "select * from post where poster_name = ?";
 
 
+    private JdbcTemplate jdbcTemplate; //Dependency Injection
 
+    //constructor
     @Autowired
     public PostDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
+    //Communicate with the Database
     private Post mapRowToPost(ResultSet rs, int rowNum) throws SQLException {
         Post post = new Post();
         post.setPostId(rs.getInt("post_id"));
@@ -48,25 +51,24 @@ public class PostDaoJdbcTemplateImpl implements PostDao {
         post.setPosterName(rs.getString("poster_name"));
         post.setPost(rs.getString("post"));
 
-
         return post;
     }
 
 
     @Override
-    public Post createPost(Post post) {
+    @Transactional // treat all the changes as one
+    public Post addPost(Post post) {
         jdbcTemplate.update(
                 INSERT_POST_SQL,
                 post.getPostDate(),
                 post.getPosterName(),
                 post.getPost());
 
+        //grabbing the last inserted id from the auto generated id
         int id = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
-
         post.setPostId(id);
 
         return post;
-
     }
 
     @Override
@@ -77,7 +79,6 @@ public class PostDaoJdbcTemplateImpl implements PostDao {
 
             return null;
         }
-
     }
 
     @Override
@@ -86,6 +87,7 @@ public class PostDaoJdbcTemplateImpl implements PostDao {
     }
 
     @Override
+    @Transactional
     public void updatePost(Post post) {
 
         jdbcTemplate.update(UPDATE_POST_SQL,
@@ -103,7 +105,7 @@ public class PostDaoJdbcTemplateImpl implements PostDao {
     }
 
     @Override
-    public List<Post> getPostByPosterName(String posterName) {
+    public List<Post> getPostsByPoster(String posterName) {
         return jdbcTemplate.query(SELECT_POST_BY_POSTERNAME, this::mapRowToPost, posterName);
     }
 }

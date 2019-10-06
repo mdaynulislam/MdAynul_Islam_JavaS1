@@ -11,12 +11,20 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1RYwLlriT0P21OyN2RJYSqpsNa5" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Brian's sTwitter/U2M2-Summative-Lora-Brian/U2M2-Summative-Lora-Brian" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RunDashboard">
@@ -31,79 +39,91 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.STwitterConfigServerApplication">
-    <configuration name="CommentQueueConsumerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trilogyed.CommentQueueConsumer.CommentQueueConsumerApplication" />
-      <module name="Comment-Queue-Consumer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trilogyed.CommentQueueConsumer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommentServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trilogyed.comment.CommentServiceApplication" />
+  <component name="RunManager" selected="JUnit.ServiceLayerTest">
+    <configuration name="CommentDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="comment-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trilogyed.comment.*" />
+          <option name="PATTERN" value="com.trilogyed.comment.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.trilogyed.comment.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.trilogyed.comment.dao.CommentDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trilogyed.post.PostServiceApplication" />
+    <configuration name="CommentDaoTest.addGetDeletePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="comment-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trilogyed.comment.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.trilogyed.comment.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.trilogyed.comment.dao.CommentDaoTest" />
+      <option name="METHOD_NAME" value="addGetDeletePost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="post-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trilogyed.post.*" />
+          <option name="PATTERN" value="com.trilogyed.post.daoTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.trilogyed.post.daoTest" />
+      <option name="MAIN_CLASS_NAME" value="com.trilogyed.post.daoTest.PostDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="STwitterConfigServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trilogyed.sTwitterConfigServer.STwitterConfigServerApplication" />
-      <module name="sTwitter-Config-Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trilogyed.sTwitterConfigServer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StwitterServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trilogyed.stwitter.StwitterServiceApplication" />
+    <configuration name="ServiceLayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stwitter-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trilogyed.stwitter.*" />
+          <option name="PATTERN" value="com.trilogyed.stwitter.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.trilogyed.stwitter.service" />
+      <option name="MAIN_CLASS_NAME" value="com.trilogyed.stwitter.service.ServiceLayerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceLayerTest.findAllFindPostsByPoster" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stwitter-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trilogyed.stwitter.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.trilogyed.stwitter.service" />
+      <option name="MAIN_CLASS_NAME" value="com.trilogyed.stwitter.service.ServiceLayerTest" />
+      <option name="METHOD_NAME" value="findAllFindPostsByPoster" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CommentServiceApplication" />
-        <item itemvalue="Application.StwitterServiceApplication" />
-        <item itemvalue="Application.CommentQueueConsumerApplication" />
-        <item itemvalue="Application.PostServiceApplication" />
-        <item itemvalue="Application.STwitterConfigServerApplication" />
+        <item itemvalue="JUnit.ServiceLayerTest" />
+        <item itemvalue="JUnit.ServiceLayerTest.findAllFindPostsByPoster" />
+        <item itemvalue="JUnit.PostDaoTest" />
+        <item itemvalue="JUnit.CommentDaoTest" />
+        <item itemvalue="JUnit.CommentDaoTest.addGetDeletePost" />
       </list>
     </recent_temporary>
   </component>

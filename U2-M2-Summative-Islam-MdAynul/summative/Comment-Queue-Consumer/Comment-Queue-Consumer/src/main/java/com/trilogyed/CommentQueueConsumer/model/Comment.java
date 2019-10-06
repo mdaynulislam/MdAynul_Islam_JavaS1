@@ -1,22 +1,19 @@
-package com.trilogyed.stwitter.model;
+package com.trilogyed.CommentQueueConsumer.model;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Comment {
 
+    //properties of Comment
     private int commentId;
-    @NotNull(message = "PostId Cannot be Null")
     private int postId;
     private LocalDate createDate;
-    @Size(min = 2, message = "Too short for a Commenter Name")
     private String commenterName;
-    @Size(min = 2, message = "Too short for a Comment")
     private String comment;
 
     //getters and setters
+
 
     public int getCommentId() {
         return commentId;
@@ -58,8 +55,7 @@ public class Comment {
         this.comment = comment;
     }
 
-    //Equal and Hashcode
-
+    //Equal and hashcode
 
     @Override
     public boolean equals(Object o) {
@@ -76,5 +72,18 @@ public class Comment {
     @Override
     public int hashCode() {
         return Objects.hash(commentId, postId, createDate, commenterName, comment);
+    }
+
+    //toString()
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", postId=" + postId +
+                ", createDate=" + createDate +
+                ", commenterName='" + commenterName + '\'' +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }

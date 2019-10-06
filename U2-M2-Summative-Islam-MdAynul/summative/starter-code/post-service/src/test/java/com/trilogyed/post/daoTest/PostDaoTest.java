@@ -43,7 +43,7 @@ public class PostDaoTest {
         post.setPosterName("Gravity Launch");
         post.setPost("Gravity");
 
-        post = postDao.createPost(post);
+        post = postDao.addPost(post);
 
         Post post1 = postDao.getPost(post.getPostId());
         assertEquals(post1,post);
@@ -55,31 +55,6 @@ public class PostDaoTest {
 
 
     @Test
-    public void getPostByPosterName() {
-
-
-        Post post = new Post();
-        post.setPostDate(LocalDate.of(2019,9,26));
-        post.setPosterName("Phantom");
-        post.setPost("It is here");
-
-        post = postDao.createPost(post);
-
-        post = new Post();
-        post.setPostDate(LocalDate.of(2019,9,26));
-        post.setPosterName("Phantom");
-        post.setPost("It is here");
-
-        post = postDao.createPost(post);
-
-        List<Post> pList = postDao.getPostByPosterName("Phantom");
-        assertEquals(2,pList.size());
-
-
-
-    }
-
-    @Test
     public void getAllPosts() {
 
         Post post = new Post();
@@ -87,14 +62,14 @@ public class PostDaoTest {
         post.setPosterName("Martian");
         post.setPost("Mat Demon");
 
-        post = postDao.createPost(post);
+        post = postDao.addPost(post);
 
         post = new Post();
         post.setPostDate(LocalDate.of(2019,8,24));
         post.setPosterName("Martian 2");
         post.setPost("Scott Adkins");
 
-        postDao.createPost(post);
+        postDao.addPost(post);
 
         List<Post> pList = postDao.getAllPosts();
         assertEquals(2, pList.size());
@@ -107,13 +82,38 @@ public class PostDaoTest {
         post.setPostDate(LocalDate.of(2019,9,26));
         post.setPosterName("Terminator");
         post.setPost("Arnold");
-        post = postDao.createPost(post);
+        post = postDao.addPost(post);
 
         post.setPost("Arnold updated");
         postDao.updatePost(post);
 
         Post post1 = postDao.getPost(post.getPostId());
         assertEquals(post1,post);
+    }
+
+    @Test
+    public void getPostByPosterName() {
+
+
+        Post post = new Post();
+        post.setPostDate(LocalDate.of(2019,9,26));
+        post.setPosterName("Phantom");
+        post.setPost("It is here");
+
+        post = postDao.addPost(post);
+
+        post = new Post();
+        post.setPostDate(LocalDate.of(2019,9,26));
+        post.setPosterName("Phantom");
+        post.setPost("It is here");
+
+        post = postDao.addPost(post);
+
+        List<Post> pList = postDao.getPostsByPoster("Phantom");
+        assertEquals(2,pList.size());
+
+
+
     }
 
 }

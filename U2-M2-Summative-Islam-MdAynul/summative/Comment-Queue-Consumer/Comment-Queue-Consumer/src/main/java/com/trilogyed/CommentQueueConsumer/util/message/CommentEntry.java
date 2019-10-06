@@ -1,5 +1,7 @@
 package com.trilogyed.CommentQueueConsumer.util.message;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 public class CommentEntry {
@@ -7,19 +9,20 @@ public class CommentEntry {
     //Comment Properties
     private int commentId;
     private int postId;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    private LocalDate createDate;
     private String commenterName;
-    private LocalDate commentDate;
     private String comment;
 
     public CommentEntry(){} // Default constructor Jackson need it to convert the message
 
     //constructor
 
-    public CommentEntry(int commentId, int postId, String commenterName, LocalDate commentDate, String comment) {
+    public CommentEntry(int commentId, int postId, String commenterName, LocalDate createDate, LocalDate commentDate, String comment) {
         this.commentId = commentId;
         this.postId = postId;
         this.commenterName = commenterName;
-        this.commentDate = commentDate;
+        this.createDate = createDate;
         this.comment = comment;
     }
 
@@ -50,12 +53,12 @@ public class CommentEntry {
         this.commenterName = commenterName;
     }
 
-    public LocalDate getCommentDate() {
-        return commentDate;
+    public LocalDate getCreateDate() {
+        return createDate;
     }
 
-    public void setCommentDate(LocalDate commentDate) {
-        this.commentDate = commentDate;
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
     public String getComment() {
@@ -75,8 +78,8 @@ public class CommentEntry {
         return "CommentEntry{" +
                 "commentId=" + commentId +
                 ", postId=" + postId +
+                ", createDate=" + createDate +
                 ", commenterName='" + commenterName + '\'' +
-                ", commentDate=" + commentDate +
                 ", comment='" + comment + '\'' +
                 '}';
     }
